@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Main.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Main.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">app</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">modelo</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">servicos</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">excecoes</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.*;</span>
+
+<span class="s0">public class </span><span class="s1">Main </span><span class="s2">{</span>
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">Estoque estoque </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Estoque</span><span class="s2">();</span>
+        <span class="s1">MonitorEstoque monitor </span><span class="s2">= </span><span class="s0">new </span><span class="s1">MonitorEstoque</span><span class="s2">(</span><span class="s1">estoque</span><span class="s2">, </span><span class="s3">10</span><span class="s2">);</span>
+        <span class="s1">monitor</span><span class="s2">.</span><span class="s1">start</span><span class="s2">();</span>
+
+        <span class="s1">menu</span><span class="s2">(</span><span class="s1">estoque</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">menu</span><span class="s2">(</span><span class="s1">Estoque estoque</span><span class="s2">) {</span>
+        <span class="s1">Scanner sc </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">in</span><span class="s2">);</span>
+        <span class="s0">int </span><span class="s1">opcao</span><span class="s2">;</span>
+
+        <span class="s0">do </span><span class="s2">{</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;=== MENU ESTOQUE DE ROTEADORES ===&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;1. Adicionar Roteador&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;2. Listar Produtos&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;3. Remover Produto&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;4. Buscar por Nome&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;5. Salvar em Arquivo&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;6. Carregar de Arquivo&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;0. Sair&quot;</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Escolha: &quot;</span><span class="s2">);</span>
+            <span class="s1">opcao </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">();</span>
+            <span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s0">switch </span><span class="s2">(</span><span class="s1">opcao</span><span class="s2">) {</span>
+                <span class="s0">case </span><span class="s3">1</span><span class="s2">:</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;ID: &quot;</span><span class="s2">);</span>
+                    <span class="s0">int </span><span class="s1">id </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">();</span>
+                    <span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Nome: &quot;</span><span class="s2">);</span>
+                    <span class="s1">String nome </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Marca: &quot;</span><span class="s2">);</span>
+                    <span class="s1">String marca </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Preço: &quot;</span><span class="s2">);</span>
+                    <span class="s0">double </span><span class="s1">preco </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextDouble</span><span class="s2">();</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Quantidade: &quot;</span><span class="s2">);</span>
+                    <span class="s0">int </span><span class="s1">quantidade </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">();</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Velocidade (Mbps): &quot;</span><span class="s2">);</span>
+                    <span class="s0">int </span><span class="s1">velocidade </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">();</span>
+                    <span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Tipo (ex: Dual Band): &quot;</span><span class="s2">);</span>
+                    <span class="s1">String tipo </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+                    <span class="s1">Produto roteador </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Roteador</span><span class="s2">(</span><span class="s1">id</span><span class="s2">, </span><span class="s1">nome</span><span class="s2">, </span><span class="s1">marca</span><span class="s2">, </span><span class="s1">preco</span><span class="s2">, </span><span class="s1">quantidade</span><span class="s2">, </span><span class="s1">velocidade</span><span class="s2">, </span><span class="s1">tipo</span><span class="s2">);</span>
+                    <span class="s1">estoque</span><span class="s2">.</span><span class="s1">adicionarProduto</span><span class="s2">(</span><span class="s1">roteador</span><span class="s2">);</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+
+                <span class="s0">case </span><span class="s3">2</span><span class="s2">:</span>
+                    <span class="s0">try </span><span class="s2">{</span>
+                        <span class="s1">estoque</span><span class="s2">.</span><span class="s1">listarProdutos</span><span class="s2">();</span>
+                    <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">EstoqueVazioException e</span><span class="s2">) {</span>
+                        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;⚠️ &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
+                    <span class="s2">}</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+
+                <span class="s0">case </span><span class="s3">3</span><span class="s2">:</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Informe o ID do produto a remover: &quot;</span><span class="s2">);</span>
+                    <span class="s0">int </span><span class="s1">idRemover </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">();</span>
+                    <span class="s1">estoque</span><span class="s2">.</span><span class="s1">removerProdutoPorId</span><span class="s2">(</span><span class="s1">idRemover</span><span class="s2">);</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+
+                <span class="s0">case </span><span class="s3">4</span><span class="s2">:</span>
+                    <span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">print</span><span class="s2">(</span><span class="s4">&quot;Nome do produto: &quot;</span><span class="s2">);</span>
+                    <span class="s1">String busca </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                    <span class="s1">Produto encontrado </span><span class="s2">= </span><span class="s1">estoque</span><span class="s2">.</span><span class="s1">buscarPorNome</span><span class="s2">(</span><span class="s1">busca</span><span class="s2">);</span>
+                    <span class="s0">if </span><span class="s2">(</span><span class="s1">encontrado </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                        <span class="s1">encontrado</span><span class="s2">.</span><span class="s1">exibirInfo</span><span class="s2">();</span>
+                    <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Produto não encontrado.&quot;</span><span class="s2">);</span>
+                    <span class="s2">}</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+
+                <span class="s0">case </span><span class="s3">5</span><span class="s2">:</span>
+                    <span class="s1">estoque</span><span class="s2">.</span><span class="s1">salvarEmArquivo</span><span class="s2">();</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+
+                <span class="s0">case </span><span class="s3">6</span><span class="s2">:</span>
+                    <span class="s1">estoque</span><span class="s2">.</span><span class="s1">carregarDeArquivo</span><span class="s2">();</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+
+                <span class="s0">case </span><span class="s3">0</span><span class="s2">:</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Encerrando sistema...&quot;</span><span class="s2">);</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+
+                <span class="s0">default</span><span class="s2">:</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Opção inválida!&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+        <span class="s2">} </span><span class="s0">while </span><span class="s2">(</span><span class="s1">opcao </span><span class="s2">!= </span><span class="s3">0</span><span class="s2">);</span>
+
+        <span class="s1">sc</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
