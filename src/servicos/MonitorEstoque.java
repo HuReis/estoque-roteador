@@ -3,6 +3,7 @@ package servicos;
 public class MonitorEstoque extends Thread {
     private Estoque estoque;
     private int intervaloSegundos;
+    private volatile boolean executando = true;
 
     public MonitorEstoque(Estoque estoque, int intervaloSegundos) {
         this.estoque = estoque;
@@ -19,13 +20,16 @@ public class MonitorEstoque extends Thread {
 
     @Override
     public void run() {
-        try {
-
+        while (executando) {
+            try {
                 verificarEstoque();
-                Thread.sleep(intervaloSegundos * 10);
-
-        } catch (InterruptedException e) {
-            System.out.println("Monitor de estoque interrompido.");
+                Thread.sleep(intervaloSegundos * 100000);
+            } catch (InterruptedException e) {
+                if (!executando) {
+                    System.out.println("Monitor de estoque finalizando...");
+                    return;
+                }
+            }
         }
     }
 }

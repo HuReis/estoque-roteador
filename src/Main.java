@@ -48,10 +48,13 @@ public class Main {
 
                     Produto roteador = new Roteador(id, nome, marca, preco, quantidade, velocidade, tipo);
                     estoque.adicionarProduto(roteador);
+
+                    roteador.cadastrar();
+                    estoque.adicionarProduto(roteador);
+                    System.out.println("----------------------------\n");
                     break;
 
                 case 2:
-                    monitor.run();
                     try {
                         estoque.listarProdutos();
                     } catch (EstoqueVazioException e) {
@@ -87,6 +90,9 @@ public class Main {
 
                 case 0:
                     System.out.println("Encerrando sistema...");
+                    //monitor.pararMonitoramento(); // Avisa a thread para parar
+                    // Opcional: esperar a thread morrer antes de fechar tudo
+                    try { monitor.join(2000); } catch (InterruptedException e) { e.printStackTrace(); }
                     break;
 
                 default:

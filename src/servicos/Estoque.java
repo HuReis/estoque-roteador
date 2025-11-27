@@ -19,8 +19,28 @@ public class Estoque {
     }
 
     public void removerProdutoPorId(int id) {
-        listaProdutos.removeIf(p -> p.getId() == id);
-        System.out.println("Produto removido com ID: " + id);
+        Produto produtoParaRemover = null;
+
+        // 1. Procura o objeto do produto na lista pelo ID
+        for (Produto p : listaProdutos) {
+            if (p.getId() == id) {
+                produtoParaRemover = p;
+                break; // Encontrou, pode sair do loop
+            }
+        }
+
+        // 2. Se encontrou o produto...
+        if (produtoParaRemover != null) {
+            // AQUI ESTÁ A MÁGICA: Chama o método remover() do próprio produto.
+            // Isso vai executar o System.out.println que está na classe Produto.java
+            produtoParaRemover.remover();
+
+            // 3. Agora sim, remove o objeto da lista do estoque
+            listaProdutos.remove(produtoParaRemover);
+            System.out.println("Sucesso: O produto com ID " + id + " foi excluído da lista.");
+        } else {
+            System.out.println("Erro: Não foi possível remover. ID " + id + " não encontrado.");
+        }
     }
 
     public void listarProdutos() throws EstoqueVazioException {

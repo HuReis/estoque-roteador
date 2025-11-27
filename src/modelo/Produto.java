@@ -23,7 +23,7 @@ public abstract class Produto implements Gerenciavel {
     public String getMarca() { return marca; }
     public double getPreco() { return preco; }
     public int getQuantidade() { return quantidade; }
-    public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
+
 
     @Override
     public void cadastrar() {
